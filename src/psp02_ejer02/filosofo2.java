@@ -50,8 +50,7 @@ public class filosofo2 extends Thread {
                 try {
                     sleep(new Random().nextInt(1000) + 800);//dormimos el hilo un tiempo aleatorio, que será lo que tarda en comer     
                 } catch (InterruptedException ex) {
-                    //Logger.getLogger(filosofo2.class.getName()).log(Level.SEVERE, null, ex);
-                    System.err.println("Error : " + ex.toString());
+                    Logger.getLogger(filosofo2.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 System.out.println("El filósofo número " + idFilosofo + " ha TERMINADO de comer.");
                 semaforosPalillos[palilloDerecho].release();//liberamos el palillo izquierdo
@@ -65,20 +64,17 @@ public class filosofo2 extends Thread {
 
     }
 
-    public void esperar() {
-
-    }
-
     @Override
     public void run() {
 
         while (true) {
             try {
                 sleep(500);//le damos tiempo antes de que vuelva a intentar empezar a comer de nuevo y no haya interbloqueo
-                
+
             } catch (InterruptedException ex) {
                 Logger.getLogger(filosofo2.class.getName()).log(Level.SEVERE, null, ex);
             }
+
             comer();
         }
 
